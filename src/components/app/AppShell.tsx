@@ -19,7 +19,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
 export function PageHeader({
   eyebrow, title, description, actions,
-}: { eyebrow?: string; title: string; description?: string; actions?: React.ReactNode }) {
+}: { eyebrow?: string; title: React.ReactNode; description?: string; actions?: React.ReactNode }) {
   return (
     <div className="mb-6 md:mb-8 flex flex-wrap items-end gap-4">
       <div className="min-w-0">

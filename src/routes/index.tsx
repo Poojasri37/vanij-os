@@ -27,7 +27,7 @@ function Dashboard() {
     <AppShell>
       <PageHeader
         eyebrow="Runtime overview · wave 3 of 4"
-        title={<span>Welcome back — the mesh shipped <span className="ai-gradient-text">12 patches</span> while you were away.</span> as unknown as string}
+        title={<>Welcome back — the mesh shipped <span className="ai-gradient-text">12 patches</span> while you were away.</>}
         description="8 agents collaborating in parallel across 4 execution waves. Reconciler is healthy, validation is green, edge deploy in 02:14."
         actions={
           <>
