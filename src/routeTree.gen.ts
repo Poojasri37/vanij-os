@@ -9,8 +9,50 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ValidationRouteImport } from './routes/validation'
+import { Route as RuntimeRouteImport } from './routes/runtime'
+import { Route as ReconcilerRouteImport } from './routes/reconciler'
+import { Route as PlannerRouteImport } from './routes/planner'
+import { Route as MemoryRouteImport } from './routes/memory'
+import { Route as LeasesRouteImport } from './routes/leases'
+import { Route as AgentsRouteImport } from './routes/agents'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ValidationRoute = ValidationRouteImport.update({
+  id: '/validation',
+  path: '/validation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RuntimeRoute = RuntimeRouteImport.update({
+  id: '/runtime',
+  path: '/runtime',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReconcilerRoute = ReconcilerRouteImport.update({
+  id: '/reconciler',
+  path: '/reconciler',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlannerRoute = PlannerRouteImport.update({
+  id: '/planner',
+  path: '/planner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MemoryRoute = MemoryRouteImport.update({
+  id: '/memory',
+  path: '/memory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeasesRoute = LeasesRouteImport.update({
+  id: '/leases',
+  path: '/leases',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AgentsRoute = AgentsRouteImport.update({
+  id: '/agents',
+  path: '/agents',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +61,130 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/agents': typeof AgentsRoute
+  '/leases': typeof LeasesRoute
+  '/memory': typeof MemoryRoute
+  '/planner': typeof PlannerRoute
+  '/reconciler': typeof ReconcilerRoute
+  '/runtime': typeof RuntimeRoute
+  '/validation': typeof ValidationRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/agents': typeof AgentsRoute
+  '/leases': typeof LeasesRoute
+  '/memory': typeof MemoryRoute
+  '/planner': typeof PlannerRoute
+  '/reconciler': typeof ReconcilerRoute
+  '/runtime': typeof RuntimeRoute
+  '/validation': typeof ValidationRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/agents': typeof AgentsRoute
+  '/leases': typeof LeasesRoute
+  '/memory': typeof MemoryRoute
+  '/planner': typeof PlannerRoute
+  '/reconciler': typeof ReconcilerRoute
+  '/runtime': typeof RuntimeRoute
+  '/validation': typeof ValidationRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/agents'
+    | '/leases'
+    | '/memory'
+    | '/planner'
+    | '/reconciler'
+    | '/runtime'
+    | '/validation'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/agents'
+    | '/leases'
+    | '/memory'
+    | '/planner'
+    | '/reconciler'
+    | '/runtime'
+    | '/validation'
+  id:
+    | '__root__'
+    | '/'
+    | '/agents'
+    | '/leases'
+    | '/memory'
+    | '/planner'
+    | '/reconciler'
+    | '/runtime'
+    | '/validation'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AgentsRoute: typeof AgentsRoute
+  LeasesRoute: typeof LeasesRoute
+  MemoryRoute: typeof MemoryRoute
+  PlannerRoute: typeof PlannerRoute
+  ReconcilerRoute: typeof ReconcilerRoute
+  RuntimeRoute: typeof RuntimeRoute
+  ValidationRoute: typeof ValidationRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/validation': {
+      id: '/validation'
+      path: '/validation'
+      fullPath: '/validation'
+      preLoaderRoute: typeof ValidationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/runtime': {
+      id: '/runtime'
+      path: '/runtime'
+      fullPath: '/runtime'
+      preLoaderRoute: typeof RuntimeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reconciler': {
+      id: '/reconciler'
+      path: '/reconciler'
+      fullPath: '/reconciler'
+      preLoaderRoute: typeof ReconcilerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/planner': {
+      id: '/planner'
+      path: '/planner'
+      fullPath: '/planner'
+      preLoaderRoute: typeof PlannerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/memory': {
+      id: '/memory'
+      path: '/memory'
+      fullPath: '/memory'
+      preLoaderRoute: typeof MemoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leases': {
+      id: '/leases'
+      path: '/leases'
+      fullPath: '/leases'
+      preLoaderRoute: typeof LeasesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/agents': {
+      id: '/agents'
+      path: '/agents'
+      fullPath: '/agents'
+      preLoaderRoute: typeof AgentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,7 +197,24 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AgentsRoute: AgentsRoute,
+  LeasesRoute: LeasesRoute,
+  MemoryRoute: MemoryRoute,
+  PlannerRoute: PlannerRoute,
+  ReconcilerRoute: ReconcilerRoute,
+  RuntimeRoute: RuntimeRoute,
+  ValidationRoute: ValidationRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
