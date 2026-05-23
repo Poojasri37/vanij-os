@@ -10,17 +10,28 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ValidationRouteImport } from './routes/validation'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as RuntimeRouteImport } from './routes/runtime'
 import { Route as ReconcilerRouteImport } from './routes/reconciler'
 import { Route as PlannerRouteImport } from './routes/planner'
+import { Route as PipelinesRouteImport } from './routes/pipelines'
 import { Route as MemoryRouteImport } from './routes/memory'
 import { Route as LeasesRouteImport } from './routes/leases'
+import { Route as KnowledgeRouteImport } from './routes/knowledge'
+import { Route as DeploymentsRouteImport } from './routes/deployments'
+import { Route as BillingRouteImport } from './routes/billing'
+import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as AgentsRouteImport } from './routes/agents'
 import { Route as IndexRouteImport } from './routes/index'
 
 const ValidationRoute = ValidationRouteImport.update({
   id: '/validation',
   path: '/validation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RuntimeRoute = RuntimeRouteImport.update({
@@ -38,6 +49,11 @@ const PlannerRoute = PlannerRouteImport.update({
   path: '/planner',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PipelinesRoute = PipelinesRouteImport.update({
+  id: '/pipelines',
+  path: '/pipelines',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MemoryRoute = MemoryRouteImport.update({
   id: '/memory',
   path: '/memory',
@@ -46,6 +62,26 @@ const MemoryRoute = MemoryRouteImport.update({
 const LeasesRoute = LeasesRouteImport.update({
   id: '/leases',
   path: '/leases',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KnowledgeRoute = KnowledgeRouteImport.update({
+  id: '/knowledge',
+  path: '/knowledge',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeploymentsRoute = DeploymentsRouteImport.update({
+  id: '/deployments',
+  path: '/deployments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BillingRoute = BillingRouteImport.update({
+  id: '/billing',
+  path: '/billing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnalyticsRoute = AnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AgentsRoute = AgentsRouteImport.update({
@@ -62,32 +98,50 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
+  '/analytics': typeof AnalyticsRoute
+  '/billing': typeof BillingRoute
+  '/deployments': typeof DeploymentsRoute
+  '/knowledge': typeof KnowledgeRoute
   '/leases': typeof LeasesRoute
   '/memory': typeof MemoryRoute
+  '/pipelines': typeof PipelinesRoute
   '/planner': typeof PlannerRoute
   '/reconciler': typeof ReconcilerRoute
   '/runtime': typeof RuntimeRoute
+  '/settings': typeof SettingsRoute
   '/validation': typeof ValidationRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
+  '/analytics': typeof AnalyticsRoute
+  '/billing': typeof BillingRoute
+  '/deployments': typeof DeploymentsRoute
+  '/knowledge': typeof KnowledgeRoute
   '/leases': typeof LeasesRoute
   '/memory': typeof MemoryRoute
+  '/pipelines': typeof PipelinesRoute
   '/planner': typeof PlannerRoute
   '/reconciler': typeof ReconcilerRoute
   '/runtime': typeof RuntimeRoute
+  '/settings': typeof SettingsRoute
   '/validation': typeof ValidationRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
+  '/analytics': typeof AnalyticsRoute
+  '/billing': typeof BillingRoute
+  '/deployments': typeof DeploymentsRoute
+  '/knowledge': typeof KnowledgeRoute
   '/leases': typeof LeasesRoute
   '/memory': typeof MemoryRoute
+  '/pipelines': typeof PipelinesRoute
   '/planner': typeof PlannerRoute
   '/reconciler': typeof ReconcilerRoute
   '/runtime': typeof RuntimeRoute
+  '/settings': typeof SettingsRoute
   '/validation': typeof ValidationRoute
 }
 export interface FileRouteTypes {
@@ -95,42 +149,66 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/agents'
+    | '/analytics'
+    | '/billing'
+    | '/deployments'
+    | '/knowledge'
     | '/leases'
     | '/memory'
+    | '/pipelines'
     | '/planner'
     | '/reconciler'
     | '/runtime'
+    | '/settings'
     | '/validation'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/agents'
+    | '/analytics'
+    | '/billing'
+    | '/deployments'
+    | '/knowledge'
     | '/leases'
     | '/memory'
+    | '/pipelines'
     | '/planner'
     | '/reconciler'
     | '/runtime'
+    | '/settings'
     | '/validation'
   id:
     | '__root__'
     | '/'
     | '/agents'
+    | '/analytics'
+    | '/billing'
+    | '/deployments'
+    | '/knowledge'
     | '/leases'
     | '/memory'
+    | '/pipelines'
     | '/planner'
     | '/reconciler'
     | '/runtime'
+    | '/settings'
     | '/validation'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AgentsRoute: typeof AgentsRoute
+  AnalyticsRoute: typeof AnalyticsRoute
+  BillingRoute: typeof BillingRoute
+  DeploymentsRoute: typeof DeploymentsRoute
+  KnowledgeRoute: typeof KnowledgeRoute
   LeasesRoute: typeof LeasesRoute
   MemoryRoute: typeof MemoryRoute
+  PipelinesRoute: typeof PipelinesRoute
   PlannerRoute: typeof PlannerRoute
   ReconcilerRoute: typeof ReconcilerRoute
   RuntimeRoute: typeof RuntimeRoute
+  SettingsRoute: typeof SettingsRoute
   ValidationRoute: typeof ValidationRoute
 }
 
@@ -141,6 +219,13 @@ declare module '@tanstack/react-router' {
       path: '/validation'
       fullPath: '/validation'
       preLoaderRoute: typeof ValidationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/runtime': {
@@ -164,6 +249,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlannerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pipelines': {
+      id: '/pipelines'
+      path: '/pipelines'
+      fullPath: '/pipelines'
+      preLoaderRoute: typeof PipelinesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/memory': {
       id: '/memory'
       path: '/memory'
@@ -176,6 +268,34 @@ declare module '@tanstack/react-router' {
       path: '/leases'
       fullPath: '/leases'
       preLoaderRoute: typeof LeasesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/knowledge': {
+      id: '/knowledge'
+      path: '/knowledge'
+      fullPath: '/knowledge'
+      preLoaderRoute: typeof KnowledgeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/deployments': {
+      id: '/deployments'
+      path: '/deployments'
+      fullPath: '/deployments'
+      preLoaderRoute: typeof DeploymentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/billing': {
+      id: '/billing'
+      path: '/billing'
+      fullPath: '/billing'
+      preLoaderRoute: typeof BillingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/analytics': {
+      id: '/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AnalyticsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/agents': {
@@ -198,11 +318,17 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AgentsRoute: AgentsRoute,
+  AnalyticsRoute: AnalyticsRoute,
+  BillingRoute: BillingRoute,
+  DeploymentsRoute: DeploymentsRoute,
+  KnowledgeRoute: KnowledgeRoute,
   LeasesRoute: LeasesRoute,
   MemoryRoute: MemoryRoute,
+  PipelinesRoute: PipelinesRoute,
   PlannerRoute: PlannerRoute,
   ReconcilerRoute: ReconcilerRoute,
   RuntimeRoute: RuntimeRoute,
+  SettingsRoute: SettingsRoute,
   ValidationRoute: ValidationRoute,
 }
 export const routeTree = rootRouteImport
