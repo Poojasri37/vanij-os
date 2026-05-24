@@ -34,7 +34,7 @@ function Workspace() {
       <div className="flex-1 min-h-0 flex">
         <IDEActivityBar active={active} onSelect={setActive} />
 
-        <PanelGroup direction="horizontal" className="flex-1">
+        <PanelGroup orientation="horizontal" className="flex-1">
           {/* Explorer */}
           <Panel defaultSize={16} minSize={10} maxSize={28}>
             <Explorer active={openFile} onOpen={setOpenFile} />
@@ -43,9 +43,9 @@ function Workspace() {
 
           {/* Center column: editor + preview / bottom */}
           <Panel defaultSize={58} minSize={30}>
-            <PanelGroup direction="vertical">
+            <PanelGroup orientation="vertical">
               <Panel defaultSize={bottomOpen ? 65 : 100} minSize={20}>
-                <PanelGroup direction="horizontal">
+                <PanelGroup orientation="horizontal">
                   <Panel defaultSize={previewOpen ? 55 : 100} minSize={25}>
                     <EditorPane
                       activePath={openFile}
