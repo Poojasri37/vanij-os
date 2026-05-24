@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { PanelGroup, Panel, PanelResizeHandle } from "react-resizable-panels";
+import { Group as PanelGroup, Panel, Separator as PanelResizeHandle } from "react-resizable-panels";
 import { IDETopBar } from "@/components/ide/IDETopBar";
 import { IDEStatusBar } from "@/components/ide/IDEStatusBar";
 import { IDEActivityBar } from "@/components/ide/IDEActivityBar";
