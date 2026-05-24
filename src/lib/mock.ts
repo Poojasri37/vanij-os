@@ -22,8 +22,11 @@ export const LEASES = [
 ];
 
 export const NAV = [
+  { group: "Workspace", items: [
+    { to: "/", label: "IDE Workspace", icon: "Sparkles" },
+    { to: "/dashboard", label: "Dashboard", icon: "LayoutDashboard" },
+  ]},
   { group: "Runtime", items: [
-    { to: "/", label: "Dashboard", icon: "LayoutDashboard" },
     { to: "/runtime", label: "Runtime", icon: "Workflow" },
     { to: "/agents", label: "Agents", icon: "Bot" },
     { to: "/planner", label: "Planner", icon: "Network" },

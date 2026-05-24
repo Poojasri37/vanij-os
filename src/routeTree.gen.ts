@@ -19,6 +19,7 @@ import { Route as MemoryRouteImport } from './routes/memory'
 import { Route as LeasesRouteImport } from './routes/leases'
 import { Route as KnowledgeRouteImport } from './routes/knowledge'
 import { Route as DeploymentsRouteImport } from './routes/deployments'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as BillingRouteImport } from './routes/billing'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as AgentsRouteImport } from './routes/agents'
@@ -74,6 +75,11 @@ const DeploymentsRoute = DeploymentsRouteImport.update({
   path: '/deployments',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BillingRoute = BillingRouteImport.update({
   id: '/billing',
   path: '/billing',
@@ -100,6 +106,7 @@ export interface FileRoutesByFullPath {
   '/agents': typeof AgentsRoute
   '/analytics': typeof AnalyticsRoute
   '/billing': typeof BillingRoute
+  '/dashboard': typeof DashboardRoute
   '/deployments': typeof DeploymentsRoute
   '/knowledge': typeof KnowledgeRoute
   '/leases': typeof LeasesRoute
@@ -116,6 +123,7 @@ export interface FileRoutesByTo {
   '/agents': typeof AgentsRoute
   '/analytics': typeof AnalyticsRoute
   '/billing': typeof BillingRoute
+  '/dashboard': typeof DashboardRoute
   '/deployments': typeof DeploymentsRoute
   '/knowledge': typeof KnowledgeRoute
   '/leases': typeof LeasesRoute
@@ -133,6 +141,7 @@ export interface FileRoutesById {
   '/agents': typeof AgentsRoute
   '/analytics': typeof AnalyticsRoute
   '/billing': typeof BillingRoute
+  '/dashboard': typeof DashboardRoute
   '/deployments': typeof DeploymentsRoute
   '/knowledge': typeof KnowledgeRoute
   '/leases': typeof LeasesRoute
@@ -151,6 +160,7 @@ export interface FileRouteTypes {
     | '/agents'
     | '/analytics'
     | '/billing'
+    | '/dashboard'
     | '/deployments'
     | '/knowledge'
     | '/leases'
@@ -167,6 +177,7 @@ export interface FileRouteTypes {
     | '/agents'
     | '/analytics'
     | '/billing'
+    | '/dashboard'
     | '/deployments'
     | '/knowledge'
     | '/leases'
@@ -183,6 +194,7 @@ export interface FileRouteTypes {
     | '/agents'
     | '/analytics'
     | '/billing'
+    | '/dashboard'
     | '/deployments'
     | '/knowledge'
     | '/leases'
@@ -200,6 +212,7 @@ export interface RootRouteChildren {
   AgentsRoute: typeof AgentsRoute
   AnalyticsRoute: typeof AnalyticsRoute
   BillingRoute: typeof BillingRoute
+  DashboardRoute: typeof DashboardRoute
   DeploymentsRoute: typeof DeploymentsRoute
   KnowledgeRoute: typeof KnowledgeRoute
   LeasesRoute: typeof LeasesRoute
@@ -284,6 +297,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DeploymentsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/billing': {
       id: '/billing'
       path: '/billing'
@@ -320,6 +340,7 @@ const rootRouteChildren: RootRouteChildren = {
   AgentsRoute: AgentsRoute,
   AnalyticsRoute: AnalyticsRoute,
   BillingRoute: BillingRoute,
+  DashboardRoute: DashboardRoute,
   DeploymentsRoute: DeploymentsRoute,
   KnowledgeRoute: KnowledgeRoute,
   LeasesRoute: LeasesRoute,
