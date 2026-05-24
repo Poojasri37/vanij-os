@@ -1,7 +1,7 @@
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { useNavigate } from "@tanstack/react-router";
-import { Bot, Rocket, Workflow, KeyRound, ShieldCheck, BrainCircuit, LineChart, Wallet, Settings, Sparkles, Terminal, GitMerge } from "lucide-react";
+import { Bot, Rocket, Workflow, KeyRound, ShieldCheck, BrainCircuit, LineChart, Wallet, Settings, Sparkles, Terminal, GitMerge, LayoutDashboard, Code2 } from "lucide-react";
 
 export function CommandPalette({ open, onOpenChange }: { open: boolean; onOpenChange: (o: boolean) => void }) {
   const nav = useNavigate();
@@ -38,6 +38,8 @@ export function CommandPalette({ open, onOpenChange }: { open: boolean; onOpenCh
             </CommandGroup>
 
             <CommandGroup heading="Navigate">
+              <CommandItem onSelect={() => go("/")}><Code2 className="h-3.5 w-3.5 text-electric" /><span>IDE Workspace</span></CommandItem>
+              <CommandItem onSelect={() => go("/dashboard")}><LayoutDashboard className="h-3.5 w-3.5" /><span>Dashboard</span></CommandItem>
               <CommandItem onSelect={() => go("/runtime")}><Workflow className="h-3.5 w-3.5" /><span>Runtime graph</span></CommandItem>
               <CommandItem onSelect={() => go("/agents")}><Bot className="h-3.5 w-3.5" /><span>Agents</span></CommandItem>
               <CommandItem onSelect={() => go("/leases")}><KeyRound className="h-3.5 w-3.5" /><span>Lease registry</span></CommandItem>

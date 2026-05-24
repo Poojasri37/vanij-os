@@ -8,7 +8,7 @@ import {
 
 const ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
   LayoutDashboard, Workflow, Bot, Network, KeyRound, GitMerge, ShieldCheck,
-  BrainCircuit, GitBranch, Rocket, BookOpen, LineChart, Wallet, Settings,
+  BrainCircuit, GitBranch, Rocket, BookOpen, LineChart, Wallet, Settings, Sparkles,
 };
 
 export function Sidebar() {
