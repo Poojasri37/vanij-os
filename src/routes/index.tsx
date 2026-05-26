@@ -48,7 +48,7 @@ function Workspace() {
       <div className="flex-1 min-h-0 flex">
         <IDEActivityBar active={active} onSelect={setActive} />
 
-        <PanelGroup orientation="horizontal" className="flex-1">
+        <PanelGroup orientation="horizontal" className={`${PG_H} flex-1 min-w-0`}>
           {/* Sidebar */}
           <Panel defaultSize={18} minSize={12} maxSize={32}>
             <LeftSidebar active={openFile} onOpen={setOpenFile} />
