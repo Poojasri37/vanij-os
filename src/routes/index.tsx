@@ -91,7 +91,7 @@ function Workspace() {
                 </span>
               </div>
 
-              <PanelGroup orientation="vertical" className="flex-1">
+              <PanelGroup orientation="vertical" className={`${PG_V} flex-1 min-h-0`}>
                 <Panel defaultSize={bottomOpen ? 65 : 100} minSize={20}>
                   {mode === "diff" ? (
                     <DiffView path={openFile} />
