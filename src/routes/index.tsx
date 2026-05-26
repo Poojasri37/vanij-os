@@ -21,8 +21,10 @@ export const Route = createFileRoute("/")({
   component: Workspace,
 });
 
-const HANDLE = "w-px bg-border data-[resize-handle-state=hover]:bg-electric/40 data-[resize-handle-state=drag]:bg-electric transition-colors";
-const VHANDLE = "h-px bg-border data-[resize-handle-state=hover]:bg-electric/40 data-[resize-handle-state=drag]:bg-electric transition-colors";
+const PG_H = "flex h-full w-full";
+const PG_V = "flex flex-col h-full w-full";
+const HANDLE = "w-px bg-border data-[resize-handle-state=hover]:bg-electric/40 data-[resize-handle-state=drag]:bg-electric transition-colors shrink-0";
+const VHANDLE = "h-px bg-border data-[resize-handle-state=hover]:bg-electric/40 data-[resize-handle-state=drag]:bg-electric transition-colors shrink-0";
 
 type Mode = "editor" | "preview" | "diff";
 
