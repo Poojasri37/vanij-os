@@ -21,8 +21,10 @@ export const Route = createFileRoute("/")({
   component: Workspace,
 });
 
-const HANDLE = "w-px bg-border data-[resize-handle-state=hover]:bg-electric/40 data-[resize-handle-state=drag]:bg-electric transition-colors";
-const VHANDLE = "h-px bg-border data-[resize-handle-state=hover]:bg-electric/40 data-[resize-handle-state=drag]:bg-electric transition-colors";
+const PG_H = "flex h-full w-full";
+const PG_V = "flex flex-col h-full w-full";
+const HANDLE = "w-px bg-border data-[resize-handle-state=hover]:bg-electric/40 data-[resize-handle-state=drag]:bg-electric transition-colors shrink-0";
+const VHANDLE = "h-px bg-border data-[resize-handle-state=hover]:bg-electric/40 data-[resize-handle-state=drag]:bg-electric transition-colors shrink-0";
 
 type Mode = "editor" | "preview" | "diff";
 
@@ -46,15 +48,15 @@ function Workspace() {
       <div className="flex-1 min-h-0 flex">
         <IDEActivityBar active={active} onSelect={setActive} />
 
-        <PanelGroup orientation="horizontal" className="flex-1">
+        <PanelGroup orientation="horizontal" className={`${PG_H} flex-1 min-w-0`}>
           {/* Sidebar */}
-          <Panel defaultSize={18} minSize={12} maxSize={32}>
+          <Panel defaultSize="18%" minSize="12%" maxSize="32%">
             <LeftSidebar active={openFile} onOpen={setOpenFile} />
           </Panel>
           <PanelResizeHandle className={HANDLE} />
 
           {/* Center column */}
-          <Panel defaultSize={56} minSize={30}>
+          <Panel defaultSize="56%" minSize="30%">
             <div className="h-full flex flex-col">
               {/* Mode switcher */}
               <div className="h-9 shrink-0 flex items-center gap-1 px-2 border-b border-border bg-surface-1/30 backdrop-blur-xl">
@@ -89,15 +91,15 @@ function Workspace() {
                 </span>
               </div>
 
-              <PanelGroup orientation="vertical" className="flex-1">
-                <Panel defaultSize={bottomOpen ? 65 : 100} minSize={20}>
+              <PanelGroup orientation="vertical" className={`${PG_V} flex-1 min-h-0`}>
+                <Panel defaultSize={bottomOpen ? "65%" : "100%"} minSize="20%">
                   {mode === "diff" ? (
                     <DiffView path={openFile} />
                   ) : mode === "preview" ? (
                     <PreviewPane />
                   ) : (
-                    <PanelGroup orientation="horizontal">
-                      <Panel defaultSize={previewOpen ? 55 : 100} minSize={25}>
+                    <PanelGroup orientation="horizontal" className={PG_H}>
+                      <Panel defaultSize={previewOpen ? "55%" : "100%"} minSize="25%">
                         <EditorPane
                           activePath={openFile}
                           previewOpen={previewOpen}
@@ -107,7 +109,7 @@ function Workspace() {
                       {previewOpen && (
                         <>
                           <PanelResizeHandle className={HANDLE} />
-                          <Panel defaultSize={45} minSize={25}>
+                          <Panel defaultSize="45%" minSize="25%">
                             <PreviewPane onClose={() => setPreviewOpen(false)} />
                           </Panel>
                         </>
@@ -119,7 +121,7 @@ function Workspace() {
                 {bottomOpen && (
                   <>
                     <PanelResizeHandle className={VHANDLE} />
-                    <Panel defaultSize={35} minSize={12} maxSize={70}>
+                    <Panel defaultSize="35%" minSize="12%" maxSize="70%">
                       <BottomPanel onCollapse={() => setBottomOpen(false)} />
                     </Panel>
                   </>
@@ -130,9 +132,10 @@ function Workspace() {
           <PanelResizeHandle className={HANDLE} />
 
           {/* Copilot */}
-          <Panel defaultSize={22} minSize={16} maxSize={36}>
+          <Panel defaultSize="26%" minSize="20%" maxSize="40%">
             <CopilotPanel />
           </Panel>
+
         </PanelGroup>
       </div>
 
