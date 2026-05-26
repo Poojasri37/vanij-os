@@ -98,7 +98,7 @@ function Workspace() {
                   ) : mode === "preview" ? (
                     <PreviewPane />
                   ) : (
-                    <PanelGroup orientation="horizontal">
+                    <PanelGroup orientation="horizontal" className={PG_H}>
                       <Panel defaultSize={previewOpen ? 55 : 100} minSize={25}>
                         <EditorPane
                           activePath={openFile}
